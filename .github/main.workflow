@@ -5,7 +5,8 @@ workflow "SwiftPM-Workflow" {
 
 action "Swift Package Clean" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
-  runs = "swift package clean && swift package resolve"
+  runs = "swift package clean "
+  runs = "swift package resolve"
 }
 
 action "Swift Package Build" {
@@ -26,5 +27,6 @@ action "Swift Package Publish" {
   env = {
     TAG = "0.0.1"
   }
-  runs = "git tag 0.0.1 && git push origin 0.0.1"
+  runs = "git tag 0.0.1"
+  runs = "git push origin 0.0.1"
 }
