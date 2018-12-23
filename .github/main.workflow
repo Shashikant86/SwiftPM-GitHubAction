@@ -3,15 +3,14 @@ workflow "SwiftPM-Workflow" {
   resolves = ["Swift Package Publish"]
 }
 
-action "Swift Package Clean" {
+action "Swift Package Fetch" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
-  runs = "swift package clean "
   runs = "swift package resolve"
 }
 
 action "Swift Package Build" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
-  needs = ["Swift Package Clean"]
+  needs = ["Swift Package Fetch"]
   runs = "swift build --build-tests"
 }
 
@@ -21,12 +20,17 @@ action "Swift Package Test" {
   runs  = "swift test --parallel "
 }
 
-action "Swift Package Publish" {
+action "Swift Package Tag" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
   needs = ["Swift Package Test"]
+  runs = "git tag 0.0.1"
+}
+
+action "Swift Package Publish" {
+  uses = "Shashikant86/SwiftPM-GitHubAction@master"
+  needs = ["Swift Package Tag"]
   env = {
     TAG = "0.0.1"
   }
-  runs = "git tag 0.0.1"
   runs = "git push origin 0.0.1"
 }
