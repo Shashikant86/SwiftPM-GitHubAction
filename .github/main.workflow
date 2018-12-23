@@ -23,8 +23,5 @@ action "Swift Package Test" {
 action "Swift Package Publish" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
   needs = ["Swift Package Test"]
-  env = {
-    GITHUB_TOKEN = $SHASHI_TOKEN
-  }
   runs = "sh git_config.sh $GITHUB_TOKEN"
 }
