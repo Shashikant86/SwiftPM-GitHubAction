@@ -1,0 +1,11 @@
+swift-build:
+  build: .
+  command: swift build
+  volumes:
+    - .:/SwiftPM-GitHubAction
+
+swift-test:
+  build: .
+  command: swift test
+  volumes:
+    - .:/SwiftPM-GitHubAction
