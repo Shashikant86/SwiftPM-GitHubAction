@@ -20,17 +20,11 @@ action "Swift Package Test" {
   runs  = "swift test --parallel "
 }
 
-action "Swift Package Tag" {
-  uses = "Shashikant86/SwiftPM-GitHubAction@master"
-  needs = ["Swift Package Test"]
-  runs = "git tag 0.0.1"
-}
-
 action "Swift Package Publish" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
-  needs = ["Swift Package Tag"]
+  needs = ["Swift Package Test"]
   env = {
     TAG = "0.0.1"
   }
-  runs = "git push origin 0.0.1"
+  runs = 'git config --global url."https://Shashikant86:$GITHUB_TOKEN@github.com/"&&git tag 0.0.1&&git push origin 0.0.1'
 }
