@@ -29,5 +29,8 @@ action "Swift Test" {
 action "Swift Publish" {
   uses = "actions/bin/filter@master"
   needs = "Swift Test"
-  args = "branch master"
+  env = {
+    NEXT_VERSION = "0.0.1"
+  }
+  args = "tag $NEXT_VERSION "
 }
