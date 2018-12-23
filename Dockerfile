@@ -10,6 +10,6 @@ LABEL "maintainer"="Shashikant Jagtap <shashikant.jagtap@icloud.com>"
 RUN mkdir /SwiftPM-GitHubAction
 WORKDIR /SwiftPM-GitHubAction
 COPY . /SwiftPM-GitHubAction
-docker-compose build
-docker-compose up
-docker-compose down
+RUN docker-compose build
+RUN docker-compose up
+RUN docker-compose down
