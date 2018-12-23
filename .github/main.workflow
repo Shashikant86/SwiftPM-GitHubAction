@@ -1,6 +1,6 @@
 workflow "SwiftPM-Workflow" {
   on = "push"
-  resolves = ["SwiftPM-GitHubAction"]
+  resolves = ["Swift Build"]
 }
 
 action "Swift Build" {
