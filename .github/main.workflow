@@ -27,13 +27,16 @@ action "Swift Test" {
 }
 
 action "Swift Package Tag" {
-  uses = "actions/bin/filter@master"
+  uses = "Shashikant86/SwiftPM-GitHubAction@master"
   needs = ["Swift Test"]
-  runs = "git status"
+  env = {
+    TAG = "0.0.1"
+  }
+  runs = "git tag $TAG"
 }
 
 action "Swift Publish" {
-  uses = "actions/bin/filter@master"
+  uses = "Shashikant86/SwiftPM-GitHubAction@master"
   needs = ["Swift Package Tag"]
   env = {
     NEXT_VERSION = "0.0.1"
