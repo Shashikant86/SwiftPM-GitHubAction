@@ -8,5 +8,7 @@ LABEL "repository"="http://github.com/shashikant86/SwiftPM-GitHubAction"
 LABEL "homepage"="http://github.com/actions"
 LABEL "maintainer"="Shashikant Jagtap <shashikant.jagtap@icloud.com>"
 
-ADD entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+RUN mkdir /SwiftPM-GitHubAction
+WORKDIR /SwiftPM-GitHubAction
+ADD ../../SwiftPM-GitHubAction /SwiftPM-GitHubAction
+ENTRYPOINT ["action-a/entrypoint.sh"]
