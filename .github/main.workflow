@@ -1,45 +1,30 @@
 workflow "SwiftPM-Workflow" {
   on = "push"
-  resolves = ["Swift Publish"]
+  resolves = ["Swift Package Publish"]
 }
 
-action "Swift Clean" {
+action "Swift Package Clean" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
-  runs = "swift package clean"
-
-}
-action "Swift Resolve" {
-  uses = "Shashikant86/SwiftPM-GitHubAction@master"
-  needs = ["Swift Clean"]
-  runs = "swift package clean"
+  runs = "swift package clean && swift package resolve"
 }
 
-action "Swift Build" {
+action "Swift Package Build" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
-  needs = ["Swift Resolve"]
+  needs = ["Swift Package Clean"]
   runs = "swift build --build-tests"
 }
 
-action "Swift Test" {
+action "Swift Package Test" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
-  needs = ["Swift Build"]
+  needs = ["Swift Package Build"]
   runs  = "swift test --parallel "
 }
 
-action "Swift Package Tag" {
+action "Swift Package Publish" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
-  needs = ["Swift Test"]
+  needs = ["Swift Package Test"]
   env = {
     TAG = "0.0.1"
   }
-  runs = "git tag $TAG"
-}
-
-action "Swift Publish" {
-  uses = "Shashikant86/SwiftPM-GitHubAction@master"
-  needs = ["Swift Package Tag"]
-  env = {
-    NEXT_VERSION = "0.0.1"
-  }
-  runs = "git push origin $NEXT_VERSION"
+  runs = "git tag 0.0.1 && git push origin 0.0.1"
 }
