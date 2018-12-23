@@ -1,3 +1,3 @@
 struct SwiftPM_GithubAction {
-    var text = "Hello, World!"
+    var text = "Hello, Github Actions!"
 }

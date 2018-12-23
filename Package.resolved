@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "FisherYates",
+        "repositoryURL": "https://github.com/apple/example-package-fisheryates.git",
+        "state": {
+          "branch": null,
+          "revision": "2a6fedc1e5a5157f6620a22c4fd70b1e93efb3d5",
+          "version": "2.0.5"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

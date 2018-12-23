@@ -11,4 +11,5 @@ RUN apt-get update && apt-get install -y git
 RUN mkdir /SwiftPM-GitHubAction
 WORKDIR /SwiftPM-GitHubAction
 COPY . /SwiftPM-GitHubAction
-# ENTRYPOINT ["/SwiftPM-GitHubAction/entrypoint.sh"]
+# Use entrypoint if needed but it's optional
+#ENTRYPOINT ["/SwiftPM-GitHubAction/entrypoint.sh"]
