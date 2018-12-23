@@ -4,5 +4,5 @@ workflow "SwiftPM-Workflow" {
 }
 
 action "Swift Build" {
-  uses = "Shashikant86/SwiftPM-GitHubAction@master"
+  uses = "./action-a"
 }

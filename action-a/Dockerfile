@@ -10,5 +10,5 @@ LABEL "maintainer"="Shashikant Jagtap <shashikant.jagtap@icloud.com>"
 
 RUN mkdir /SwiftPM-GitHubAction
 WORKDIR /SwiftPM-GitHubAction
-ADD ../ /SwiftPM-GitHubAction
+ADD ../ .
 ENTRYPOINT ["action-a/entrypoint.sh"]
