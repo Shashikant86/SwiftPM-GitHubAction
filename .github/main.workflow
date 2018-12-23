@@ -10,20 +10,24 @@ action "Swift Clean" {
 
 action "Swift Resolve" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
+  needs = "Swift Clean"
   args = "package resolve"
 }
 
 action "Swift Build" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
+  needs = "Swift Resolve"
   args = "build"
 }
 
 action "Swift Test" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
+  needs = "Swift Build"
   args = "test"
 }
 
 action "Swift Publish" {
   uses = "actions/bin/filter@master"
+  needs = "Swift Test"
   args = "branch master"
 }
