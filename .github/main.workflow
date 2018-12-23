@@ -26,5 +26,5 @@ action "Swift Package Publish" {
   env = {
     TAG = "0.0.1"
   }
-  runs = 'git config --global url."https://Shashikant86:$GITHUB_TOKEN@github.com/"&&git tag 0.0.1&&git push origin 0.0.1'
+  runs = "sh git_config.sh"
 }
