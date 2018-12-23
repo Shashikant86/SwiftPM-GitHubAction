@@ -7,6 +7,7 @@ LABEL "com.github.actions.color"="orange"
 LABEL "repository"="http://github.com/shashikant86/SwiftPM-GitHubAction"
 LABEL "homepage"="http://github.com/actions"
 LABEL "maintainer"="Shashikant Jagtap <shashikant.jagtap@icloud.com>"
+RUN apt-get update && apt-get install -y git
 RUN mkdir /SwiftPM-GitHubAction
 WORKDIR /SwiftPM-GitHubAction
 COPY . /SwiftPM-GitHubAction
