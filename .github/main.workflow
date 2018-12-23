@@ -26,5 +26,5 @@ action "Swift Package Publish" {
   env = {
     TAG = "0.0.1"
   }
-  runs = "sh git_config.sh"
+  runs = "sh git_config.sh $SHASHI_TOKEN"
 }
