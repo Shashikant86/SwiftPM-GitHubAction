@@ -29,10 +29,7 @@ action "Swift Test" {
 action "Swift Package Tag" {
   uses = "actions/bin/filter@master"
   needs = ["Swift Test"]
-  env = {
-    TAG = "0.0.1"
-  }
-  runs = "git tag $TAG"
+  runs = "git tag 0.0.1"
 }
 
 action "Swift Publish" {
