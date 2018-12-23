@@ -11,7 +11,7 @@ action "Swift Clean" {
 action "Swift Resolve" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
   needs = ["Swift Clean"]
-  runs = "swift package clean""
+  runs = "swift package clean"
 }
 
 action "Swift Build" {
