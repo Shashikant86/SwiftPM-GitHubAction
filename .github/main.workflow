@@ -5,32 +5,41 @@ workflow "SwiftPM-Workflow" {
 
 action "Swift Clean" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
-  args = "package clean"
-}
+  runs = "swift package clean"
 
+}
 action "Swift Resolve" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
-  needs = "Swift Clean"
-  args = "package resolve"
+  needs = ["Swift Clean"]
+  runs = "swift package clean""
 }
 
 action "Swift Build" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
-  needs = "Swift Resolve"
-  args = "build"
+  needs = ["Swift Resolve"]
+  runs = "swift build --build-tests"
 }
 
 action "Swift Test" {
   uses = "Shashikant86/SwiftPM-GitHubAction@master"
-  needs = "Swift Build"
-  args = "test"
+  needs = ["Swift Build"]
+  runs  = "swift test --parallel "
+}
+
+action "Swift Package Tag" {
+  uses = "actions/bin/filter@master"
+  needs = ["Swift Test"]
+  env = {
+    TAG = "0.0.1"
+  }
+  runs = "git tag $TAG"
 }
 
 action "Swift Publish" {
   uses = "actions/bin/filter@master"
-  needs = "Swift Test"
+  needs = ["Swift Package Tag"]
   env = {
     NEXT_VERSION = "0.0.1"
   }
-  args = "tag $NEXT_VERSION "
+  runs = "git push origin $NEXT_VERSION"
 }
